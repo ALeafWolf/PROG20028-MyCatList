@@ -6,11 +6,11 @@ public class Cat {
     private String Gender;
     private int Age;
 
-    public Cat(String n, String b, String g, int a){
-        Name = n;
-        Breed = b;
-        Gender = g;
-        Age = a;
+    public Cat(String name, String breed, String gender, int age){
+        Name = name;
+        Breed = breed;
+        Gender = gender;
+        Age = age;
     }
 
     public String GetName(){
@@ -27,5 +27,9 @@ public class Cat {
 
     public int GetAge(){
         return Age;
+    }
+
+    public String AgeToString(){
+        return Age + "-year-old";
     }
 }

@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import sheridan.qina.mycatlist2.databinding.CatlistItemBinding;
-import sheridan.qina.mycatlist2.dummy.DummyContent.DummyItem;
-
 import java.util.List;
 
 

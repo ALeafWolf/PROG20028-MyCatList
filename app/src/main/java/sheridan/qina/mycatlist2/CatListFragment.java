@@ -14,8 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import sheridan.qina.mycatlist2.databinding.CatlistItemBinding;
-import sheridan.qina.mycatlist2.dummy.DummyContent;
-import sheridan.qina.mycatlist2.dummy.DummyContent.DummyItem;
 
 import java.util.ArrayList;
 import java.util.List;
