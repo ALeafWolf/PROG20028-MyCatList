@@ -1,5 +1,6 @@
 package sheridan.qina.mycatlist2;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -7,72 +8,48 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import sheridan.qina.mycatlist2.CatListFragment.OnListFragmentInteractionListener;
+import sheridan.qina.mycatlist2.databinding.CatlistItemBinding;
 import sheridan.qina.mycatlist2.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class CatListRecyclerViewAdapter extends RecyclerView.Adapter<CatListRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final List<Cat> mCats;
 
-    public CatListRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+    public CatListRecyclerViewAdapter(List<Cat> items) {
+        mCats = items;
     }
 
     @Override
+    @NonNull
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.catlist_item, parent, false);
-        return new ViewHolder(view);
+        CatlistItemBinding binding = CatlistItemBinding.inflate(
+                LayoutInflater.from(parent.getContext()), parent, false
+        );
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
+        Cat cat = mCats.get(position);
+        holder.binding.setCat(cat);
+        holder.binding.executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mCats.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final CatlistItemBinding binding;
 
-        public ViewHolder(View view) {
-            super(view);
-            mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+        public ViewHolder(CatlistItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

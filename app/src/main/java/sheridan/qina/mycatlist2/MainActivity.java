@@ -39,6 +39,6 @@ public class MainActivity extends AppCompatActivity {
         cats.add(new Cat("Cat C", "Savannah cat", "female", 1));
         cats.add(new Cat("Cat D", "Norwegian Forest cat", "female", 4));
         cats.add(new Cat("Cat E", "Bombay cat", "male", 10));
-        //mCatListFragment.setCats(cats);
+        mCatListFragment.setCats(cats);
     }
 }
